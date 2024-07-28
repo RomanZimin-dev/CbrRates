@@ -21,8 +21,8 @@
 1. Клонируйте репозиторий:
 
     ```sh
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
+    git clone https://github.com/RomanZimin-dev/CbrRates.git
+    cd CbrRates
     ```
 2. Запустите Docker Compose для сборки и запуска контейнеров:
 
