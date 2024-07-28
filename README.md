@@ -93,7 +93,7 @@
     ```    
    или
    ```sh
-    php set_history_task.php 10 USD
+    php set_history_task.php 10 USD EUR
     ``` 
 7. Для обработки сообщений из очереди rabbitMq, необходимо запустить скрипт workers/rmq_get_history_rates.php
    ```sh
