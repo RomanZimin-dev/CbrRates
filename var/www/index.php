@@ -12,23 +12,9 @@ use DI\ContainerBuilder;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-/*
-$inputDataValidator = new InputDataValidator();
-
-$requestBuilder = new RequestBuilder();
-
-$responseDataValidator = new ResponseDataValidator();
-$responseBuilder = new ResponseBuilder($responseDataValidator);
-
-$client = new Client();
-$communicationHandler = new CommunicationHandler($requestBuilder, $responseBuilder, $client);
-$cbrCurrencyRates = new CbrCurrencyRates($inputDataValidator, $communicationHandler);
-*/
 $date = $argv[1];
-$currencyCode = $argv[2];
+$currencyCode = $argv[2]?? "";
 $baseCurrencyCode = ($argv[3])?? null;
-
-//\CbrCurrencyRates\Cache\Cache::flush();
 
 try {
     // PHP-DI чтобы не собирать композицию вручную
@@ -40,13 +26,13 @@ try {
 
     echo $dataToShow['rate'] . " (" . ($dataToShow['differenceFromPreviousMarketDate'] > 0? "+" : "") . $dataToShow['differenceFromPreviousMarketDate'] . ")\n";
 } catch (BadCurrencyException|BadResponseException $e) {
-    echo "[Request-Response Error] " . $e->getMessage();
+    echo "[Request-Response Error] " . $e->getMessage() . "\n";
 } catch (BadInputException $e) {
-    echo "[Bad Input Format] " . $e->getMessage();
+    echo "[Bad Input Format] " . $e->getMessage() . "\n";
 } catch (CommunicationException $e) {
-    echo "[Connection Error] " . $e->getMessage();
+    echo "[Connection Error] " . $e->getMessage() . "\n";
 } catch (GuzzleException|Exception $e) {
-    echo "[Something went wrong] " . $e->getMessage();
+    echo "[Something went wrong] " . $e->getMessage() . "\n";
 }
 
 

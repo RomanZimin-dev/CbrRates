@@ -1,7 +1,6 @@
-version: '3.8'
-
 services:
   web:
+    container_name: web
     build: .
     ports:
       - "8080:80"
@@ -12,12 +11,14 @@ services:
       - memcache
 
   rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3-management
     ports:
       - "5672:5672"    # порт для AMQP
       - "15672:15672"  # порт для управления
 
   memcache:
+    container_name: memcache
     image: memcached:latest
     ports:
       - "11211:11211"  # стандартный порт Memcache
