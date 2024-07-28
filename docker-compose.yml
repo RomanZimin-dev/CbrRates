@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./var/www:/var/www/html
+    depends_on:
+      - rabbitmq
+      - memcache
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"    # порт для AMQP
+      - "15672:15672"  # порт для управления
+
+  memcache:
+    image: memcached:latest
+    ports:
+      - "11211:11211"  # стандартный порт Memcache
